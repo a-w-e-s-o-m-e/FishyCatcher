@@ -1,0 +1,22 @@
+{
+  "name": "fishyCatcher",
+  "version": "1.0.0",
+  "description": "I catch fishy domains as soon as they create their SSL certificate.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "xunga",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "node-cron": "^1.2.1",
+    "ora": "^1.3.0",
+    "ws": "^4.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.9"
+  }
+}
