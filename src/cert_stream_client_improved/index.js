@@ -5,6 +5,7 @@ module.exports = class CertStreamClient {
     this.context = {};
     this.callback = callback;
     this.skipHeartbeats = skipHeartbeats;
+    this.heartBeatTimestamp = false;
   }
 
   connect() {
@@ -23,6 +24,10 @@ module.exports = class CertStreamClient {
         return;
       }
 
+      if (parsedMessage.message_type === "heartbeat") {
+        return this.heartBeatTimestamp = parseInt(parsedMessage.timestamp);
+      }
+
       this.callback(parsedMessage, this.context);
     });
 
@@ -32,7 +37,19 @@ module.exports = class CertStreamClient {
 
     this.ws.on("close", () => {
       console.log(" -> Socket connection closed, reconnectting in 5 seconds");
-      setTimeout(this.connect(), 5000);
+      clearInterval(this.alive);
+      setTimeout(() => {this.connect()}, 5000);
     });
+
+    this.alive = setInterval(() => {
+      console.log('alive check');
+      const now = parseInt(Date.now() / 1000);
+
+      if(this.heartBeatTimestamp && now - this.heartBeatTimestamp > 30) {
+        console.log('Connection lost... reconnecting');
+        this.ws.terminate();
+      }
+    }, 15000)
   }
+
 };
