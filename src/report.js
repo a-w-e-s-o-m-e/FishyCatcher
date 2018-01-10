@@ -25,7 +25,7 @@ const report = data => {
     reportValue += " " + data.subject;
   }
 
-  if (
+  if ( // if the domains contains both of the two words, make it noticeable with emojis
     settings.doubleWordMatch &&
     reportValue.includes(settings.firstWord) &&
     reportValue.includes(settings.secondWord)
