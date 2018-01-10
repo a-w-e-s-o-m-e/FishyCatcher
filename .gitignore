@@ -3,3 +3,4 @@ src/config\.js
 .idea/
 catched_domains.txt
 catched_domains_archive.txt
+npm-debug.log
