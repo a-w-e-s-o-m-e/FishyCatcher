@@ -40,7 +40,7 @@ const sendWebhook = (domains, emoji = "") => {
   console.log(` -> reporting this domains: ${domains}`);
   axios
     .post(
-      "https://hooks.slack.com/services/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",
+      settings.slackWebhook,
       {
         text: `${emoji}Found potential suspicious domain(s): \n\n ${domains}`
       }

@@ -15,3 +15,5 @@ exports.emailConfig = {
 };
 exports.from = '"Fishy Catcher Bot" <the.from.emailaddress@gmail.com>';
 exports.to = "your.email.address@example.com";
+
+exports.slackWebhook = "https://hooks.slack.com/your_secret_url";
