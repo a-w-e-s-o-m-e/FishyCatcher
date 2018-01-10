@@ -42,11 +42,10 @@ module.exports = class CertStreamClient {
     });
 
     this.alive = setInterval(() => {
-      console.log('alive check');
       const now = parseInt(Date.now() / 1000);
 
       if(this.heartBeatTimestamp && now - this.heartBeatTimestamp > 30) {
-        console.log('Connection lost... reconnecting');
+        console.log(' -> Connection lost... reconnecting');
         this.ws.terminate();
       }
     }, 15000)
