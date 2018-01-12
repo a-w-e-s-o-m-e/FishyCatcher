@@ -49,7 +49,7 @@ const sendWebhookCerts = (domains, emoji = "") => {
       console.log(error);
     });
 
-  fs.appendFile("../../catched_domains.txt", "\n" + domains, err => {
+  fs.appendFile("catched_domains.txt", "\n" + domains, err => {
     if (err) console.error("Error while saving on file", err);
   });
 };
@@ -68,7 +68,7 @@ const sendWebhookAds = (domains) => {
       console.log(error);
     });
 
-  fs.appendFile("../../catched_ads_domains.txt", "\n" + domains, err => {
+  fs.appendFile("catched_ads_domains.txt", "\n" + domains, err => {
     if (err) console.error("Error while saving on file", err);
   });
 };
