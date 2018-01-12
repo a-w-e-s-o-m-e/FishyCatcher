@@ -6,7 +6,7 @@ const { sendWebhookAds } = require("./report");
 let foundDomains = [];
 
 const done = () => {
-  console.log('[Ads Scraping] We are done with Nightmare');
+  console.log('\n[Ads Scraping] We are done with Nightmare');
   console.log('[Ads Scraping] Ads found: ', foundDomains.length);
   if(foundDomains.length) {
     if(settings.reportAll || foundDomains.findIndex((el) => el.match(settings.domainRegex)) > -1){
