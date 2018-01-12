@@ -1,6 +1,5 @@
 src/config\.js
 /node_modules
 .idea/
-catched_domains.txt
-catched_domains_archive.txt
+
 npm-debug.log
