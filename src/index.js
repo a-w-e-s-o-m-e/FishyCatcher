@@ -1,47 +1,26 @@
-const CertStreamClient = require("./cert_stream_client_improved/");
-const ora = require("ora");
-const { report } = require("./report");
-const settings = require("./config");
-require("./cron");
+require("./lib/cron");
+const {startCertsStream} = require("./lib/certScarper");
+const { runAdSearches } = require("./lib/adScraper");
 
-const spinner = ora("Connecting to certstream").start();
-let domains = 0;
-let currentDomains = 0;
 
-let client = new CertStreamClient(message => {
-  let stringifiedSubject = "";
-  let stringifiedAllDomains = "";
 
-  if (
-    message &&
-    message.data &&
-    message.data.leaf_cert &&
-    message.data.leaf_cert.subject
-  )
-    stringifiedSubject = JSON.stringify(message.data.leaf_cert.subject);
+console.log(`
 
-  if (
-    message &&
-    message.data &&
-    message.data.leaf_cert &&
-    message.data.leaf_cert.all_domains
-  )
-    stringifiedAllDomains = JSON.stringify(message.data.leaf_cert.all_domains);
 
-  if (
-    settings.domainRegex.test(stringifiedSubject) ||
-    settings.domainRegex.test(stringifiedAllDomains)
-  ) {
-    report(message.data.leaf_cert);
-  }
+  ______ _     _            _____      _       _               
+ |  ____(_)   | |          / ____|    | |     | |              
+ | |__   _ ___| |__  _   _| |     __ _| |_ ___| |__   ___ _ __ 
+ |  __| | / __| '_ \\| | | | |    / _\\\` | __/ __| '_ \\ / _ \\ '__|
+ | |    | \\__ \\ | | | |_| | |___| (_| | || (__| | | |  __/ |   
+ |_|    |_|___/_| |_|\\__, |\\_____\\__,_|\\__\\___|_| |_|\\___|_|   
+                      __/ |                                    
+                     |___/                                     
 
-  domains++;
-});
+ Preventing phishing before it even happens...
 
-setInterval(() => {
-  currentDomains = domains;
-  spinner.text = `Inspecting domains... ${currentDomains} per second `;
-  domains = 0;
-}, 1000);
+`);
 
-client.connect();
+
+startCertsStream();
+runAdSearches();
+
