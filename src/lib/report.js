@@ -1,8 +1,8 @@
 const axios = require("axios");
 const fs = require("fs");
-const settings = require("./config");
+const settings = require("../config");
 
-const report = data => {
+const reportCerts = data => {
   let allDomains = [];
   let subject = false;
   let reportValue = "";
@@ -33,25 +33,45 @@ const report = data => {
     emoji = "⚠️⚠️ ️";
   }
 
-  sendWebhook(reportValue, emoji);
+  sendWebhookCerts(reportValue, emoji);
 };
 
-const sendWebhook = (domains, emoji = "") => {
+const sendWebhookCerts = (domains, emoji = "") => {
   console.log(` -> reporting this domains: ${domains}`);
   axios
     .post(
       settings.slackWebhook,
       {
-        text: `${emoji}Found potential suspicious domain(s): \n\n ${domains}`
+        text: `[CertStream] ${emoji}Found potential suspicious domain(s): \n\n ${domains}`
       }
     )
     .catch(error => {
       console.log(error);
     });
 
-  fs.appendFile("../catched_domains.txt", "\n" + domains, err => {
+  fs.appendFile("../../catched_domains.txt", "\n" + domains, err => {
     if (err) console.error("Error while saving on file", err);
   });
 };
 
-exports.report = report;
+
+const sendWebhookAds = (domains) => {
+  console.log(` -> reporting this domains: ${domains}`);
+  axios
+    .post(
+      settings.slackWebhook,
+      {
+        text: `⚠[Ads Scraping] Ads found with ${settings.name} terms: \n\n ${domains.join(' , ')}`
+      }
+    )
+    .catch(error => {
+      console.log(error);
+    });
+
+  fs.appendFile("../../catched_ads_domains.txt", "\n" + domains, err => {
+    if (err) console.error("Error while saving on file", err);
+  });
+};
+
+exports.reportCerts = reportCerts;
+exports.sendWebhookAds = sendWebhookAds;
