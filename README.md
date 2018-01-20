@@ -1,7 +1,7 @@
 # FishyCatcher
 
 <p align="center">
-  <img src="https://github.com/bitwala/fishyCatcher/blob/master/img/meta.png?raw=true" data-canonical-src="https://github.com/bitwala/fishyCatcher/blob/master/img/meta.png?raw=true" style="text-align:center;" />
+  <img src=https://github.com/a-w-e-s-o-m-e/FishyCatcher/blob/master/img/meta.png?raw=true" data-canonical-src=https://github.com/a-w-e-s-o-m-e/FishyCatcher/blob/master/img/meta.png?raw=true" style="text-align:center;" />
 </p>
 
 FishyCatcher is a bot that detects suspicious new domains that match certain Regex on the Certstream (A simple service for getting data from the Certificate Transparency Log (CTL) network in real time), inspects the Google SERP in case there are suspicious ADs matching the Regex and sends a message on Slack and a daily report via email.
