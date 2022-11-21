@@ -1,4 +1,5 @@
-# FishyCatcher
+# FishyCatcher 
+### [deprecated]
 
 <p align="center">
   <img src=https://github.com/a-w-e-s-o-m-e/FishyCatcher/blob/master/img/meta.png?raw=true" data-canonical-src=https://github.com/a-w-e-s-o-m-e/FishyCatcher/blob/master/img/meta.png?raw=true" style="text-align:center;" />
